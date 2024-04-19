@@ -23,6 +23,8 @@ F3 - Start the game speed changer
 
 F4 - Stop the game speed changer
 
+F6 - Set the game speed back to 100% 
+
 F1 - Use the "random" speed changer type (Jumpy, random changes in speed)
 
 F2 - Use the "Sine" speed changer type (continuous, smooth change in speed)
