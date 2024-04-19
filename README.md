@@ -29,7 +29,6 @@ Tunable parameters (Edited in the SpeedChanger.CT lua script):
 baseSpeed: Works in 2 different ways, depending on using sin or random for speed changer type
 	If using sine:
 		This is the "middle" speed of the speed changer. IE, if you want to oscillate between 0.5x speed and 2x speed, the baseSpeed is 1.25
-
 	If using rand:
 		This is the maximum speed that you can achieve, and you will randomly select a value between 0 and the base speed. IE, if you want
 		to randomly select any speed between 0x and 500x, set this to 5. 
