@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries/>
+  <UserdefinedSymbols/>
+  <LuaScript>baseSpeed = 1.25
+newspeed = 1.25
+
+maxspeed = 2
+minspeed = 0.25
+
+sinfreq = 0.25
+sinamp = 0.75
+
+functype = 1
+
+TimeInterval = 300
+
+sin = math.sin
+deg = math.deg
+
+sinfunc = function (x) return (sin(x)) end
+
+function sleep (a)
+    local sec = tonumber(os.clock() + a);
+    while (os.clock() &lt; sec) do
+    end
+end
+
+math.randomseed(os.clock())
+
+function rand_speed ()
+         newspeed = math.random() * maxspeed
+         if(newspeed &gt; maxspeed) then
+                     newspeed = maxspeed
+         end
+         if(newspeed &lt; minspeed) then
+                     newspeed = minspeed
+         end
+         print("newspeed (rand) is", newspeed)
+         speedhack_setSpeed(newspeed)
+end
+
+function sin_speed ()
+         local myTime = os.clock()
+         newspeed = baseSpeed - sinamp * sinfunc(sinfreq * myTime)
+         if(newspeed &gt; maxspeed) then
+                     newspeed = maxspeed
+         end
+         if(newspeed &lt; minspeed) then
+                     newspeed = minspeed
+         end
+         print("newspeed (sin) is", newspeed)
+         speedhack_setSpeed(newspeed)
+end
+
+myTimer = createTimer(nil, false)
+myTimer.Interval=TimeInterval
+
+myTimer.OnTimer = function(myTimer)
+    if (functype == 0) then
+       rand_speed()
+    end
+    if (functype == 1) then
+        sin_speed()
+    end
+
+end
+
+createHotkey(function () timer_setEnabled(myTimer, true) end, VK_F3)
+createHotkey(function () timer_setEnabled(myTimer, false) end, VK_F4)
+createHotkey(function () speedhack_setSpeed(1) end, VK_F6)
+createHotkey(function () functype = 0 end, VK_F1)
+createHotkey(function () functype = 1 end, VK_F2)
+
+
+</LuaScript>
+</CheatTable>
