@@ -39,10 +39,10 @@ end
 function sin_speed ()
          local myTime = os.clock()
          newspeed = baseSpeed - sinamp * sinfunc(sinfreq * myTime)
-         if(newspeed &gt; maxspeed) then
+         if(newspeed > maxspeed) then
                      newspeed = maxspeed
          end
-         if(newspeed &lt; minspeed) then
+         if(newspeed < minspeed) then
                      newspeed = minspeed
          end
          print("newspeed (sin) is", newspeed)
