@@ -1,7 +1,7 @@
 # EldenRingSpeedChanger
 This is a lua script for cheat engine to dynamically change the speed of Elden ring (or any other game) dynamically with the help of cheat engine
 
-I ***HIGHLY** Recommend running Elden Ring offline with the EAC Disabled. Steps to do that are here:
+I **HIGHLY** Recommend running Elden Ring offline with the EAC Disabled. Steps to do that are here:
 https://www.windowscentral.com/how-disable-anti-cheat-elden-ring
 
 Please note this script is to be run in Cheat Engine 7.5, I havent tested it on previous versions
