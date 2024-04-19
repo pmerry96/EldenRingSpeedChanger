@@ -2,7 +2,8 @@
 <CheatTable CheatEngineTableVersion="45">
   <CheatEntries/>
   <UserdefinedSymbols/>
-  <LuaScript>myTimer = createTimer(nil, false)
+  <LuaScript>
+myTimer = createTimer(nil, false)
 
 baseSpeed = 1.25
 newspeed = 1.25
