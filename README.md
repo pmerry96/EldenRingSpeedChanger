@@ -20,16 +20,25 @@ Script Controls
 HOTKEYS:
 
 F3 - Start the game speed changer
+
 F4 - Stop the game speed changer
+
 F1 - Use the "random" speed changer type (Jumpy, random changes in speed)
+
 F2 - Use the "Sine" speed changer type (continuous, smooth change in speed)
+
 
 Tunable parameters (Edited in the SpeedChanger.CT lua script):
 
 baseSpeed: Works in 2 different ways, depending on using sin or random for speed changer type
+
 	If using sine:
+
 		This is the "middle" speed of the speed changer. IE, if you want to oscillate between 0.5x speed and 2x speed, the baseSpeed is 1.25
+
+
 	If using rand:
+
 		This is the maximum speed that you can achieve, and you will randomly select a value between 0 and the base speed. IE, if you want
 		to randomly select any speed between 0x and 500x, set this to 5. 
 
@@ -38,6 +47,7 @@ maxspeed: A hard cap on the maximum speed any speed changer can set the game spe
 minspeed: A hard floor on the minimum speed any speed changer can set the game speed to. Setting this to 0 or below will crash your game. 
 
 sinfreq: Only applicable for the Sine speed changer. Increase this value for the speed to change more every time the speed updates. Decrease this value to decrease the change in speed every time the speed updates
+
 sinamp: Only applicable for the Sine speed changer. The amount of deviation from the baseSpeed that can be achieved. (IE: speed range is baseSpeed plus or minus sinamp)
 
 TimeInterval: This is the frequency with which the script will actually attempt to change the speed. Default set to 300 milliseconds. If the script is causing lag, increase this value. 
