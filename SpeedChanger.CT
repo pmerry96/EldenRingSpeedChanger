@@ -1,55 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries/>
+  <UserdefinedSymbols/>
+  <LuaScript>myTimer = createTimer(nil, false)
+
 baseSpeed = 1.25
 newspeed = 1.25
 
 maxspeed = 2
 minspeed = 0.25
 
+-- dont allow a 0 or negative speed
+if(minspeed &lt;= 0) then
+            minspeed=0.01
+end
+ -- enforce maxspeed greater than minspeed
+if (maxspeed &lt; minspeed) then
+   local tmp = minspeed
+   minspeed=maxspeed
+   maxspeed=tmp
+end
+
+-- The "acceleration". How quickly the speed changes
 sinfreq = 0.25
+-- The Total Amount of change plus or minus the BaseSpeed
 sinamp = 0.75
 
+-- Can Be
+--  0 = random speed
+--  1 = sine speed
+--  2 = sawtooth speed
 functype = 1
 
+-- The number of milliseconds between the speed being updated
 TimeInterval = 300
+
 
 sin = math.sin
 deg = math.deg
 
-sinfunc = function (x) return (sin(x)) end
+-- The max speed of the sawtooth wave
+SawToothMax = 2
 
-function sleep (a)
-    local sec = tonumber(os.clock() + a);
-    while (os.clock() &lt; sec) do
-    end
+-- The min speed of the sawtooth wave
+SawToothMin = 0.5
+
+-- How long it takes to go from max speed to the next max speed
+SawToothPeriodMs = 10000
+
+-- dont let sawtooth exceed predefined max
+if(SawToothMax &gt; maxspeed) then
+               SawToothMax=maxspeed
 end
 
+-- dont let sawtooth go below predefined min
+if(SawToothMin &lt; minspeed) then
+               SawToothMin=minspeed
+end
+
+-- require that the period of the sawtooth wave is greater than the update freq
+if(SawToothPeriodMs &lt; TimeInterval) then
+                    SawToothPeriodMs = 30 * TimeInterval
+end
+
+--calc the step we take on every update during the sawtooth wave
+SawToothStepInterval = (TimeInterval/SawToothPeriodMs) *(SawToothMax - SawToothMin)
+-- Calc a starting speed in the middle for the sawtooth wave
+currentSpeed=SawToothMax-SawToothMin/2
+
+--Does the sawtooth start low and increase, or start high and decrease
+-- -1 = decrease
+-- 1 = increase
+sawToothSign = 1
+
+--define the sine function
+sinfunc = function (x) return (sin(x)) end
+
+-- seed random number generation
 math.randomseed(os.clock())
 
+-- Set the speed randomly on every update between minspeed and maxspeed
 function rand_speed ()
          newspeed = math.random() * maxspeed
-         if(newspeed > maxspeed) then
+         if(newspeed &gt; maxspeed) then
                      newspeed = maxspeed
          end
-         if(newspeed < minspeed) then
+         if(newspeed &lt; minspeed) then
                      newspeed = minspeed
          end
          print("newspeed (rand) is", newspeed)
          speedhack_setSpeed(newspeed)
 end
 
+-- set the speed based on a sign wave
 function sin_speed ()
          local myTime = os.clock()
          newspeed = baseSpeed - sinamp * sinfunc(sinfreq * myTime)
-         if(newspeed > maxspeed) then
+         if(newspeed &gt; maxspeed) then
                      newspeed = maxspeed
          end
-         if(newspeed < minspeed) then
+         if(newspeed &lt; minspeed) then
                      newspeed = minspeed
          end
          print("newspeed (sin) is", newspeed)
          speedhack_setSpeed(newspeed)
 end
 
-myTimer = createTimer(nil, false)
+-- set the speed based on a sawtooth wave
+function sawToothSpeed()
+         currentSpeed = currentSpeed + sawToothSign * SawToothStepInterval
+
+         if(currentSpeed &gt; SawToothMax) then
+                         currentSpeed=SawToothMin
+         end
+
+         if(currentSpeed &lt; SawToothMin) then
+                         currentSpeed=SawToothMax
+         end
+         print("newspeed (sawtooth) is", currentSpeed)
+         speedhack_setSpeed(currentSpeed)
+end
+
+-- set the speed based on a linear wave (or a pyramid wave)
+function linearWave()
+         currentSpeed = currentSpeed + sawToothSign * SawToothStepInterval
+
+         if(currentSpeed &gt; SawToothMax) then
+                         currentSpeed=SawToothMax
+                         sawToothSign = sawToothSign * -1
+         end
+
+         if(currentSpeed &lt; SawToothMin) then
+                         currentSpeed=SawToothMin
+                         sawToothSign = sawToothSign * -1
+         end
+         print("newspeed (linear wave) is", currentSpeed)
+         speedhack_setSpeed(currentSpeed)
+end
+
+-- Begin Main Execution
+
+
 myTimer.Interval=TimeInterval
 
 myTimer.OnTimer = function(myTimer)
@@ -59,11 +150,23 @@ myTimer.OnTimer = function(myTimer)
     if (functype == 1) then
         sin_speed()
     end
-
+    if (functype == 2) then
+       sawToothSpeed()
+    end
+    if (functype == 3) then
+       linearWave()
+    end
 end
 
-createHotkey(function () timer_setEnabled(myTimer, true) end, VK_F3)
-createHotkey(function () timer_setEnabled(myTimer, false) end, VK_F4)
-createHotkey(function () speedhack_setSpeed(1) end, VK_F6)
-createHotkey(function () functype = 0 end, VK_F1)
-createHotkey(function () functype = 1 end, VK_F2)
+createHotkey(function () timer_setEnabled(myTimer, true) end, VK_F1)
+createHotkey(function () timer_setEnabled(myTimer, false) end, VK_F2)
+createHotkey(function () speedhack_setSpeed(1) end, VK_F3)
+createHotkey(function () functype = 0 end, VK_F6)
+createHotkey(function () functype = 1 end, VK_F7)
+createHotkey(function () functype = 2 end, VK_F8)
+createHotkey(function () functype = 3 end, VK_F9)
+createHotkey(function () sawToothSign = sawToothSign * -1 end, VK_F10)
+
+
+</LuaScript>
+</CheatTable>
