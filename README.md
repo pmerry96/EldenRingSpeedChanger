@@ -19,15 +19,21 @@ Script Controls
 
 HOTKEYS:
 
-F3 - Start the game speed changer
+F1 - Start the game speed changer
 
-F4 - Stop the game speed changer
+F2 - Stop the game speed changer
 
-F6 - Set the game speed back to 100% 
+F3 - Set the game speed back to 100% 
 
-F1 - Use the "random" speed changer type (Jumpy, random changes in speed)
+F6 - Use the "random" speed changer type (Jumpy, random changes in speed)
 
-F2 - Use the "Sine" speed changer type (continuous, smooth change in speed)
+F7 - Use the "Sine" speed changer type (continuous, smooth change in speed)
+
+F8 - use the Sawtooth speed changer (linear increase from a min to a max or vice versa, then go to the opposite extreme)
+
+F9 - Use the Linear wave speed changer (like a sine wave, but is a triangle wave)
+
+F10 - Change if the sawtooth speed changer goes from min to max, or from max to min (default is from min to max)
 
 
 Tunable parameters (Edited in the SpeedChanger.CT lua script):
@@ -53,3 +59,18 @@ sinfreq: Only applicable for the Sine speed changer. Increase this value for the
 sinamp: Only applicable for the Sine speed changer. The amount of deviation from the baseSpeed that can be achieved. (IE: speed range is baseSpeed plus or minus sinamp)
 
 TimeInterval: This is the frequency with which the script will actually attempt to change the speed. Default set to 300 milliseconds. If the script is causing lag, increase this value. 
+
+
+
+The below parameters apply to a sawtooth or triangle/linear wave only
+
+SawToothMax: the maximum speed a sawtooth speed changer can achieve (Cannot be greater than maxspeed)
+
+SawToothMin: The minimum speed a sawtooth speed changer can achieve (cannot be les than minspeed)
+
+SawToothPeriodMs: The amount of time it takes to go from one extreme to the other in milliseconds. For the sawtooth wave, this is the period Note, if using a linear wave - this 1/2 the period. This value cannot be less than TimeInterval
+
+sawToothSign: This determines if the sawtooth wave is continuously increasing before reverting to min speed (default) or continuously decreasing before reverting to max speed. Do not edit, instead use the F10 hotkey
+
+
+
