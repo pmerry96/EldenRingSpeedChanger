@@ -1,4 +1,8 @@
-baseSpeed = 1.25
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="45">
+  <CheatEntries/>
+  <UserdefinedSymbols/>
+  <LuaScript>baseSpeed = 1.25
 newspeed = 1.25
 
 maxspeed = 2
@@ -26,10 +30,10 @@ math.randomseed(os.clock())
 
 function rand_speed ()
          newspeed = math.random() * maxspeed
-         if(newspeed > maxspeed) then
+         if(newspeed &gt; maxspeed) then
                      newspeed = maxspeed
          end
-         if(newspeed < minspeed) then
+         if(newspeed &lt; minspeed) then
                      newspeed = minspeed
          end
          print("newspeed (rand) is", newspeed)
@@ -39,10 +43,10 @@ end
 function sin_speed ()
          local myTime = os.clock()
          newspeed = baseSpeed - sinamp * sinfunc(sinfreq * myTime)
-         if(newspeed > maxspeed) then
+         if(newspeed &gt; maxspeed) then
                      newspeed = maxspeed
          end
-         if(newspeed < minspeed) then
+         if(newspeed &lt; minspeed) then
                      newspeed = minspeed
          end
          print("newspeed (sin) is", newspeed)
@@ -67,3 +71,7 @@ createHotkey(function () timer_setEnabled(myTimer, false) end, VK_F4)
 createHotkey(function () speedhack_setSpeed(1) end, VK_F6)
 createHotkey(function () functype = 0 end, VK_F1)
 createHotkey(function () functype = 1 end, VK_F2)
+
+
+</LuaScript>
+</CheatTable>
