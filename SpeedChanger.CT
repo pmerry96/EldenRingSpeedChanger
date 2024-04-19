@@ -26,10 +26,10 @@ math.randomseed(os.clock())
 
 function rand_speed ()
          newspeed = math.random() * maxspeed
-         if(newspeed &gt; maxspeed) then
+         if(newspeed > maxspeed) then
                      newspeed = maxspeed
          end
-         if(newspeed &lt; minspeed) then
+         if(newspeed < minspeed) then
                      newspeed = minspeed
          end
          print("newspeed (rand) is", newspeed)
