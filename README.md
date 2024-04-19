@@ -8,6 +8,7 @@ Please note this script is to be run in Cheat Engine 7.5, I havent tested it on 
 
 STEPS TO USE
 
+Step 0: Clone this repository
 Step 1: Launch Cheat Engine 7.5
 Step 2: Attach Cheat Engine to the Elden Ring process
 Step 3: Load the file "SpeedChanger.CT"
@@ -15,7 +16,7 @@ Step 4: Press ctrl+alt+L
 Step 5: Click Execute Script
 
 --- 
-Script Controls
+**Script Controls**
 
 HOTKEYS:
 
@@ -35,20 +36,17 @@ F9 - Use the Linear wave speed changer (like a sine wave, but is a triangle wave
 
 F10 - Change if the sawtooth speed changer goes from min to max, or from max to min (default is from min to max)
 
+---
 
-Tunable parameters (Edited in the SpeedChanger.CT lua script):
+**Tunable parameters**
+
+(Edited in the SpeedChanger.CT lua script):
 
 baseSpeed: Works in 2 different ways, depending on using sin or random for speed changer type
 
-	If using sine:
+baseSpeed - If using sine: This is the "middle" speed of the speed changer. IE, if you want to oscillate between 0.5x speed and 2x speed, the baseSpeed is 1.25
 
-		This is the "middle" speed of the speed changer. IE, if you want to oscillate between 0.5x speed and 2x speed, the baseSpeed is 1.25
-
-
-	If using rand:
-
-		This is the maximum speed that you can achieve, and you will randomly select a value between 0 and the base speed. IE, if you want
-		to randomly select any speed between 0x and 500x, set this to 5. 
+baseSpeed - If using rand: This is the maximum speed that you can achieve, and you will randomly select a value between 0 and the base speed. IE, if you want to randomly select any speed between 0x and 500x, set this to 5. 
 
 maxspeed: A hard cap on the maximum speed any speed changer can set the game speed to.
 
@@ -61,7 +59,6 @@ sinamp: Only applicable for the Sine speed changer. The amount of deviation from
 TimeInterval: This is the frequency with which the script will actually attempt to change the speed. Default set to 300 milliseconds. If the script is causing lag, increase this value. 
 
 
-
 The below parameters apply to a sawtooth or triangle/linear wave only
 
 SawToothMax: the maximum speed a sawtooth speed changer can achieve (Cannot be greater than maxspeed)
@@ -71,6 +68,4 @@ SawToothMin: The minimum speed a sawtooth speed changer can achieve (cannot be l
 SawToothPeriodMs: The amount of time it takes to go from one extreme to the other in milliseconds. For the sawtooth wave, this is the period Note, if using a linear wave - this 1/2 the period. This value cannot be less than TimeInterval
 
 sawToothSign: This determines if the sawtooth wave is continuously increasing before reverting to min speed (default) or continuously decreasing before reverting to max speed. Do not edit, instead use the F10 hotkey
-
-
 
