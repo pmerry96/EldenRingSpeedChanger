@@ -6,6 +6,8 @@ https://www.windowscentral.com/how-disable-anti-cheat-elden-ring
 
 Please note this script is to be run in Cheat Engine 7.5, I havent tested it on previous versions
 
+Theoretically, you can use this script for any non-online game provided you attach cheat engine to the game process
+
 STEPS TO USE
 
 Step 0: Clone this repository
