@@ -11,11 +11,17 @@ Theoretically, you can use this script for any non-online game provided you atta
 STEPS TO USE
 
 Step 0: Clone this repository
+
 Step 1: Launch Cheat Engine 7.5
+
 Step 2: Attach Cheat Engine to the Elden Ring process
+
 Step 3: Load the file "SpeedChanger.CT"
+
 Step 4: Press ctrl+alt+L
+
 Step 5: Click Execute Script
+
 
 --- 
 **Script Controls**
